@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+<style>
+  .login {
+    width: 220px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color : white;
+    background-color: Blue;
+  }
+  .input {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .loginForm {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+</style>
+
+
+
+
+<center>
+<body>
+  <div class="loginForm">
+    <h2>Login Form</h2>
+    <form id="loginForm">
+      <input type="email" id="username" name="username" placeholder="Email"   class="input " required>
+      <br><br>
+      <input type="password" id="password" name="password" placeholder="Password"   class="input" required>
+      <br><br>
+      <button class="login" onclick="Login()">Login</button><br>
+    <h4>Don't have an account<a href="./Registration.html">Register</a></h4>  
+    </form>
+  </div>
+</center>
+
+
+  <script>
+    function Login(){
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault(); 
+      const email = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const storedUserData = localStorage.getItem("email");
+  
+      const currentUser = {email:email, password:password};
+      const currentUserData =[currentUser];
+      localStorage.setItem("currentUser", JSON.stringify(currentUserData));
+
+
+      if (storedUserData) {
+        const user = JSON.parse(storedUserData);
+        if (user.password === password) {
+          alert('Login successful!');
+          window.location.href = './Home.html';
+        } else {
+          alert('Invalid email or password.');
+        }
+      }
+      else {
+        alert('No user found. Please register first.');
+      }
+    });
+
+   
+
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<style>
+.logout {
+    width: 100px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color : white;
+    background-color: Red;
+}
+
+</style>
+
+
+<body>
+  <center>
+ <h1>This is a simple Dashboard</h1>
+ <h3 id="welcome"></h3>
+ <button  class="logout"   onclick="signout()">Logout</button>
+  </center>
+  <script>
+  
+  function signout() {
+      localStorage.removeItem("currentUser");
+      window.location.href = './Login.html';
+    }
+    const welcome = document.getElementById("welcome");
+    welcome.innerHTML = "Welcome " + JSON.parse(localStorage.getItem("currentUser"))[0].email;
+
+</script>
+</html>
